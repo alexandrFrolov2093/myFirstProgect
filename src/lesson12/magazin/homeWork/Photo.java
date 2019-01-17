@@ -3,9 +3,18 @@ package lesson12.magazin.homeWork;
 public class Photo {
     private String pathToPhoto;
     private String title;
+    private String opisanie;
 
     public Photo() {
 
+    }
+
+    public String getOpisanie() {
+        return opisanie;
+    }
+
+    public void setOpisanie(String opisanie) {
+        this.opisanie = opisanie;
     }
 
     public Photo(String pathToPhoto, String title) {
@@ -32,8 +41,9 @@ public class Photo {
     @Override
     public String toString() {
         return "Photo{" +
-                "pathToPhoto='" + pathToPhoto + '\'' +'\n' +
-                ", title='" + title + '\'' +'\n' +
+                "pathToPhoto='" + pathToPhoto + '\'' +
+                ", title='" + title + '\'' +
+                ", opisanie='" + opisanie + '\'' +
                 '}';
     }
 }
