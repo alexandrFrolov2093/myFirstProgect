@@ -2,30 +2,37 @@ package impls;
 
 import interfaces.IMatrix;
 
+
 public class MarixImpls implements IMatrix {
+    private double[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+
     @Override
     public int getRows() {
-        return 0;
+        return this.matrix.length;
     }
 
     @Override
     public int getColumns() {
-        return 0;
+        return this.matrix[0].length;
     }
 
     @Override
     public double getValueAt(int rowIndex, int colIndex) throws IndexOutOfBoundsException {
-        return 0;
+        if (rowIndex < 0 || rowIndex >= matrix.length || colIndex < 0 || colIndex >= matrix[0].length)
+            throw new IndexOutOfBoundsException("rowIndex <0 || rowIndex >= matrix.length || colIndex < 0 || colIndex >= matrix[0].length");
+        return this.matrix[rowIndex][colIndex];
     }
 
     @Override
     public void setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
-
+        if (rowIndex < 0 || rowIndex >= matrix.length || colIndex < 0 || colIndex >= matrix[0].length)
+            throw new IndexOutOfBoundsException("rowIndex <0 || rowIndex >= matrix.length || colIndex < 0 || colIndex >= matrix[0].length");
+        this.matrix[rowIndex][colIndex] = value;
     }
 
     @Override
     public IMatrix add(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-        return null;
+            return null;
     }
 
     @Override
@@ -60,7 +67,17 @@ public class MarixImpls implements IMatrix {
 
     @Override
     public boolean isNullMatrix() {
-        return false;
+        int count = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == 0)
+                    count++;
+            }
+        }
+        if (count != 0)
+            return true;
+        else
+            return false;
     }
 
     @Override
