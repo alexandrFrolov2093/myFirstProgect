@@ -25,5 +25,14 @@ public class Main2 {
         System.out.println(util.unionWithoutDuplicate(a,b));
         System.out.println(util.intersectionWithoutDuplicate(a,b));
         System.out.println(util.difference(a, b));
+
+        System.out.println("---------------");
+        ListUtilsImpls listUtilsImpls = new ListUtilsImpls();
+        System.out.println(listUtilsImpls.asList("qwerty","asdfgh","zxcvbn"));
+        LinkedList<Double> data = new LinkedList();
+        data.add(1.2);
+        data.add(5.4);
+        data.add(0.4);
+        System.out.println(listUtilsImpls.sortedList(data));
     }
 }
