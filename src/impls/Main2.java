@@ -20,6 +20,10 @@ public class Main2 {
         b.add(5);
 
         CollectionUtilsImpls util = new CollectionUtilsImpls();
+        System.out.println(util.union(a,b));
+        System.out.println(util.intersection(a, b));
+        System.out.println(util.unionWithoutDuplicate(a,b));
+        System.out.println(util.intersectionWithoutDuplicate(a,b));
         System.out.println(util.difference(a, b));
     }
 }
