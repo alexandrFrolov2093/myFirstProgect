@@ -4,7 +4,15 @@ import interfaces.IMatrix;
 
 
 public class MarixImpls implements IMatrix {
-    private double[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    private double[][] matrix;
+
+    public MarixImpls() {
+
+    }
+
+    public MarixImpls(double[][] matrix) {
+        this.matrix = matrix;
+    }
 
     @Override
     public int getRows() {
@@ -32,31 +40,93 @@ public class MarixImpls implements IMatrix {
 
     @Override
     public IMatrix add(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-            return null;
+        if (this.matrix == null || otherMatrix == null)
+            throw new NullPointerException("this.matrix == null || otherMatrix == null");
+        if (this.matrix.length != otherMatrix.getRows() && this.matrix[0].length != otherMatrix.getColumns())
+            throw new IllegalArgumentException("this.matrix.length != otherMatrix.getRows() && this.matrix[0].length != otherMatrix.getColumns()");
+        double[][] mat = new double[this.matrix.length][this.matrix[0].length];
+        MarixImpls result = new MarixImpls(mat);
+        for (int i = 0; i < this.matrix.length; i++) {
+            for (int j = 0; j < this.matrix[i].length; j++) {
+                result.setValueAt(i, j, this.matrix[i][j] + otherMatrix.getValueAt(i, j));
+            }
+        }
+        result.printToConsole();
+        return result;
     }
 
     @Override
     public IMatrix sub(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-        return null;
+        if (this.matrix == null || otherMatrix == null)
+            throw new NullPointerException("this.matrix == null || otherMatrix == null");
+        if (this.matrix.length != otherMatrix.getRows() && this.matrix[0].length != otherMatrix.getColumns())
+            throw new IllegalArgumentException("this.matrix.length != otherMatrix.getRows() && this.matrix[0].length != otherMatrix.getColumns()");
+        double[][] mat = new double[this.matrix.length][this.matrix[0].length];
+        MarixImpls result = new MarixImpls(mat);
+        for (int i = 0; i < this.matrix.length; i++) {
+            for (int j = 0; j < this.matrix[i].length; j++) {
+                result.setValueAt(i, j, this.matrix[i][j] - otherMatrix.getValueAt(i, j));
+            }
+        }
+        result.printToConsole();
+        return result;
     }
 
     @Override
     public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-        return null;
+        if (this.matrix == null || otherMatrix == null)
+            throw new NullPointerException("this.matrix == null || otherMatrix == null");
+        if (this.matrix[0].length != otherMatrix.getRows())
+            throw new IllegalArgumentException("this.matrix[0].length != otherMatrix.getRows()");
+        int m = this.matrix.length;
+        int n = otherMatrix.getColumns();
+        int o = otherMatrix.getRows();
+        double[][] res = new double[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < o; k++) {
+                    res[i][j] += this.matrix[i][k] * otherMatrix.getValueAt(k, j);
+                }
+            }
+        }
+        MarixImpls result = new MarixImpls(res);
+        result.printToConsole();
+        return result;
     }
 
     @Override
     public IMatrix mul(double value) {
-        return null;
+        double[][] mat = new double[this.matrix.length][this.matrix[0].length];
+        for (int i = 0; i < this.matrix.length; i++) {
+            for (int j = 0; j < this.matrix[i].length; j++) {
+                mat[i][j] = this.matrix[i][j] * value;
+            }
+        }
+        MarixImpls result = new MarixImpls(mat);
+        result.printToConsole();
+        return result;
     }
 
     @Override
     public IMatrix transpose() {
-        return null;
+        double[][] mat = new double[this.matrix[0].length][this.matrix.length];
+        for (int i = 0; i < this.matrix.length; i++) {
+            for (int j = 0; j < this.matrix[i].length; j++) {
+                mat[j][i] = this.matrix[i][j];
+            }
+        }
+        MarixImpls result = new MarixImpls(mat);
+        result.printToConsole();
+        return result;
     }
 
     @Override
     public void fillMatrix(double value) {
+        for (int i = 0; i < this.matrix.length; i++) {
+            for (int j = 0; j < this.matrix[i].length; j++) {
+                this.matrix[i][j] = value;
+            }
+        }
 
     }
 
@@ -82,16 +152,39 @@ public class MarixImpls implements IMatrix {
 
     @Override
     public boolean isIdentityMatrix() {
-        return false;
+        boolean rezult = false;
+        int colvoOne = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (i == j && matrix[i][j] == 1) {
+                    colvoOne++;
+                } else if (matrix[i][j] != 0) {
+                    rezult = false;
+                }
+            }
+            if (colvoOne == matrix.length) {
+                rezult = true;
+            }
+        }
+        return rezult;
     }
 
     @Override
     public boolean isSquareMatrix() {
-        return false;
+        if (this.matrix.length == this.matrix[0].length)
+            return true;
+        else
+            return false;
     }
 
     @Override
     public void printToConsole() {
-
+        System.out.println("матрица");
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }

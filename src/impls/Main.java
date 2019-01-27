@@ -29,6 +29,32 @@ public class Main {
         System.out.println(fractionNumbersOperationImpls.mul(a,b));
         System.out.println(fractionNumbersOperationImpls.sub(a,b));
 
+        System.out.println("-------------------");
+        double[][] matrix = {{1,2,3},{4,5,6},{7,8,9}};
+        double[][] matrix2 = {{3,2,1},{6,5,4},{9,8,7}};
+        double[][] nullMatrix = {{0,0,0},{0,0,0},{0,0,0}};
+        double[][] edinichMatrix = {{1,0,0},{0,1,0},{0,0,1}};
+
+        MarixImpls matrixA = new MarixImpls(matrix);
+        MarixImpls matrixB = new MarixImpls(matrix2);
+        MarixImpls matrixNull = new MarixImpls(nullMatrix);
+        MarixImpls edinichMatr = new MarixImpls(edinichMatrix);
+        matrixA.sub(matrixB);
+        matrixA.mul(matrixB);
+        matrixA.add(matrixB);
+        matrixA.mul(10);
+        matrixA.fillMatrix(10);
+        System.out.println(matrixB.getColumns());
+        matrixB.setValueAt(1,1,1);
+        System.out.println(matrixB.getRows());
+        System.out.println(matrixB.getValueAt(2,2));
+        System.out.println(edinichMatr.isIdentityMatrix());
+        System.out.println(edinichMatr.isSquareMatrix());
+        System.out.println(matrixNull.isNullMatrix());
+
+
+
+
 
 
     }
