@@ -2,6 +2,7 @@ package impls;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("stringUtils");
         StringUtilImpls stringUtilImpls = new StringUtilImpls();
         System.out.println(stringUtilImpls.div("81","9"));
 
@@ -10,8 +11,9 @@ public class Main {
         for(int num:mass){
             System.out.println(num);
         }
-        System.out.println("------------");
 
+        System.out.println("------------");
+        System.out.println("fractionNumbers");
         FractionNumbersImpls a = new FractionNumbersImpls();
         a.setDividend(3);
         a.setDivisor(4);
@@ -21,8 +23,9 @@ public class Main {
         FractionNumbersImpls b = new FractionNumbersImpls();
         b.setDivisor(2);
         b.setDividend(1);
-        System.out.println("-------------");
 
+        System.out.println("-------------");
+        System.out.println("fractionNumbersOperation");
         FractionNumbersOperationImpls fractionNumbersOperationImpls = new FractionNumbersOperationImpls();
         System.out.println(fractionNumbersOperationImpls.add(a,b));
         System.out.println(fractionNumbersOperationImpls.div(a,b));
@@ -30,11 +33,13 @@ public class Main {
         System.out.println(fractionNumbersOperationImpls.sub(a,b));
 
         System.out.println("-------------------");
+        System.out.println("matrixUtils");
         double[][] matrix = {{1,2,3},{4,5,6},{7,8,9}};
         double[][] matrix2 = {{3,2,1},{6,5,4},{9,8,7}};
         double[][] nullMatrix = {{0,0,0},{0,0,0},{0,0,0}};
         double[][] edinichMatrix = {{1,0,0},{0,1,0},{0,0,1}};
 
+        MarixImpls marixImpls = new MarixImpls();
         MarixImpls matrixA = new MarixImpls(matrix);
         MarixImpls matrixB = new MarixImpls(matrix2);
         MarixImpls matrixNull = new MarixImpls(nullMatrix);
@@ -51,9 +56,7 @@ public class Main {
         System.out.println(edinichMatr.isIdentityMatrix());
         System.out.println(edinichMatr.isSquareMatrix());
         System.out.println(matrixNull.isNullMatrix());
-
-
-
+        System.out.println(marixImpls.det(matrix2, matrix2.length));
 
 
 
