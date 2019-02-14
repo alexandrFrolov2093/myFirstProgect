@@ -3,7 +3,7 @@ package ImplsMetodsFils;
 import interfaceFile.IOUtils;
 
 import java.io.File;
-import java.io.FileFilter;
+import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -14,7 +14,18 @@ public class IOUtilsImpls implements IOUtils {
 
     @Override
     public void replaceChars(Reader in, Writer out, String inChars, String outChars) throws NullPointerException, IllegalArgumentException {
-
+        try {
+            while (true){
+                char ch = (char)in.read();
+                int indexOff = inChars.indexOf(ch);
+                if(indexOff != -1){
+                    ch = outChars.charAt(indexOff);
+                }
+                out.write(ch);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
